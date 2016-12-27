@@ -194,6 +194,7 @@ app.get('/donate/:address', function(req, res) {
 		blacklist.child(address).once('value', function(snapshot) {
 			var exists = (snapshot.val() !== null);
 			if (exists) {
+				console.log('dropping blacklisted address',address);
 				return res.status(200).json({
 					paydate: 0,
 					address: address,
